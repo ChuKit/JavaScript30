@@ -18,29 +18,62 @@
     }
 
     // Regular
+    console.log('hello world');
+    console.table(dogs);
 
     // Interpolated
+    console.log('Hi I am a %s string!', 'bakka'); //The one below is better
+    const str = 'in-line';
+    console.log(`Hi I am an ${str} variable`);
 
     // Styled
+    console.log('%c I am some great text', 'font-size: 20px; background: red; text-shadow: 4px 4px 0 blue;');
 
     // warning!
+    console.warn('Hold your horse!');
 
     // Error :|
+    console.error('Shit happen!');
 
     // Info
+    console.info('The space between nose and upper lip is called philtrum or infranasal depression.');
 
     // Testing
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('ouch'), 'That is work');
 
     // clearing
+    // console.clear();
 
     // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
-
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.groupEnd(`${dog.name}`);
+    });
     // counting
+    console.count('Muda');
+    console.count('Muda');
+    console.count('Ora');
+    console.count('Muda');
+    console.count('Ora');
+    console.count('Ora');
+    console.count('Muda');
 
     // timing
-
+    const C_FETCHING_ACTIVITY = 'fetching';
+    console.time(C_FETCHING_ACTIVITY);
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd(C_FETCHING_ACTIVITY);
+        console.log(data);
+      })
   </script>
 </body>
 </html>
