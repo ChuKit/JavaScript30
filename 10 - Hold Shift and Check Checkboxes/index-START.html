@@ -96,6 +96,34 @@
   </div>
 
 <script>
+let lastChecked = null;
+
+function performBulkCheckUncheck(e) {
+  if (e.shiftKey && (lastChecked !== null)) {
+    let inBetween = false;
+    checkboxes.forEach(checkbox => {
+      if (checkbox === this || checkbox === lastChecked) {
+        inBetween = !inBetween;
+      }
+
+      if (inBetween) checkbox.checked = this.checked;
+    });
+
+    lastChecked.checked = this.checked;
+  }
+
+  lastChecked = this;
+}
+
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+//CKK: My first attempt I listen to 'change' event which is inferior to 'click'
+//     event in this case coz click event can identify whether shift key is down
+//     by just e.shiftKey (see above)
+//     Comparing to my old code I have to set a shift flag and addEventListener to
+//     all keydown/keyup to listen to shift key separately
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', performBulkCheckUncheck));
+
 </script>
 </body>
 </html>
